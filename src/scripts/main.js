@@ -54,7 +54,7 @@ export default class Range {
     this.ctx.beginPath()
     this.ctx.moveTo(this.range.x, this.range.y)
     this.ctx.lineTo(this.range.x1, this.range.y)
-    this.ctx.strokeStyle = 'black'
+    this.ctx.strokeStyle = 'blue'
     this.ctx.stroke()
     
     // thumb
@@ -62,7 +62,7 @@ export default class Range {
     const thumbX = this.range.x + this.range.width * this.range.pct
     this.ctx.moveTo(thumbX, this.range.y - this.range.height / 2)
     this.ctx.lineTo(thumbX, this.range.y + this.range.height / 2)
-    this.ctx.strokeStyle = 'rgba(255,0,0,0.25)'
+    this.ctx.strokeStyle = 'rgba(255, 0, 0, 0.5)'
     this.ctx.stroke()
     
     // legend
@@ -70,10 +70,11 @@ export default class Range {
     this.ctx.textAlign = 'center'
     this.ctx.textBaseline = 'top'
     this.ctx.font = '10px arial'
+    
     this.ctx.fillText(
-      `${parseInt(this.range.pct * 100)}%`,
+      `${Math.trunc(this.range.pct * 100)}%`,
       this.range.x + this.range.width / 2,
-      this.range.y - this.range.height / 2 - 2,
+      (this.range.y - this.range.height / 2) - 15,
     )
   }
   
@@ -127,6 +128,7 @@ export default class Range {
   }
 }
 
+// todo add x,y position, and x,y offset parent
 new Range(canvas)
 
 
