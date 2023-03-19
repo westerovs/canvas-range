@@ -9,11 +9,12 @@ export default class Range {
     this.canvas = canvas
     this.ctx = canvas.getContext('2d', {willReadFrequently: true})
     
-    this.mouseX = null
-    // this.mouseY = null
+    this.pointerX = null
+    // this.pointerY = null
     this.offsetX = null
     this.offsetY = null
     this.isDown = false
+    this.initPrc = 0.50
     
     this.range = null
     
@@ -42,7 +43,7 @@ export default class Range {
     const range = {x, y, width, height}
     range.x1 = range.x + range.width
     range.y1 = range.y
-    range.pct = 0.50
+    range.pct = this.initPrc
     
     return range
   }
@@ -104,12 +105,12 @@ export default class Range {
     e.preventDefault()
     e.stopPropagation()
     
-    // get mouse position
-    this.mouseX = e.clientX - this.offsetX
-    console.log(this.mouseX)
-    // this.mouseY = parseInt(e.clientY - this.offsetY)
+    // get pointer position
+    this.pointerX = e.clientX - this.offsetX
+    console.log(this.pointerX)
+    // this.pointerY = parseInt(e.clientY - this.offsetY)
     
-    this.range.pct = Math.max(0, Math.min(1, (this.mouseX - this.range.x) / this.range.width))
+    this.range.pct = Math.max(0, Math.min(1, (this.pointerX - this.range.x) / this.range.width))
     console.log(this.range.pct)
     
     this.ctx.clearRect(
@@ -118,6 +119,7 @@ export default class Range {
       this.range.width + 25,
       this.range.height + 20,
     )
+
     this.drawRangeControl(this.range)
   }
   
