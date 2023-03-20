@@ -36,7 +36,7 @@ export default class Range {
     canvas.addEventListener('pointerdown', (e) => this.handlePointerDown(e))
     canvas.addEventListener('pointermove', (e) => this.handlePointerMove(e))
     canvas.addEventListener('pointerup', (e) => this.handlePointerUp(e))
-    canvas.addEventListener('pointerout', (e) => this.handlePointerUp(e))
+    // canvas.addEventListener('pointerout', (e) => this.handlePointerUp(e))
   }
   
   makeRangeControl = (x, y, width, height) => {
